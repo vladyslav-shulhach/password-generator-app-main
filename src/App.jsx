@@ -1,34 +1,112 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [password, setPassword] = useState("");
+  const [length, setLength] = useState(12);
+  const [includeUppercase, setIncludeUppercase] = useState(true);
+  const [includeLowercase, setIncludeLowercase] = useState(true);
+  const [includeNumbers, setIncludeNumbers] = useState(true);
+  const [includeSymbols, setIncludeSymbols] = useState(false);
+
+  useEffect(() => {
+    document.title = "Password Generator App | Vladyslav Shulhach";
+  }, []);
+
+  // Placeholder for password generation logic
+  const handleGenerate = () => {
+    setPassword("P@ssw0rd123!"); // Replace with real logic
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="app-window">
+      <header>
+        <h1>Password Generator</h1>
+      </header>
+
+      <section className="password-showcase">
+        <input
+          type="text"
+          value={password}
+          readOnly
+          className="password-output"
+          placeholder="Your secure password"
+        />
+      </section>
+
+      <form
+        className="password-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleGenerate();
+        }}
+      >
+        <div className="form-group">
+          <label htmlFor="length-slider">
+            Length: <strong>{length}</strong>
+          </label>
+          <input
+            id="length-slider"
+            type="range"
+            min="6"
+            max="32"
+            value={length}
+            onChange={(e) => setLength(Number(e.target.value))}
+          />
+        </div>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={includeUppercase}
+              onChange={(e) => setIncludeUppercase(e.target.checked)}
+            />
+            Include Uppercase Letters
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={includeLowercase}
+              onChange={(e) => setIncludeLowercase(e.target.checked)}
+            />
+            Include Lowercase Letters
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={includeNumbers}
+              onChange={(e) => setIncludeNumbers(e.target.checked)}
+            />
+            Include Numbers
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={includeSymbols}
+              onChange={(e) => setIncludeSymbols(e.target.checked)}
+            />
+            Include Symbols
+          </label>
+        </div>
+        <button type="submit" className="button">
+          Generate Password
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </form>
+
+      <footer>
+        <small>
+          &copy; {new Date().getFullYear()} Vladyslav Shulhach. All rights
+          reserved.
+        </small>
+      </footer>
+    </div>
   );
 }
 
