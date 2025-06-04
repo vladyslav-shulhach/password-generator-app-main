@@ -20,86 +20,86 @@ function App() {
   };
 
   return (
-    <div className="app-window">
+    <div>
       <header>
         <h1>Password Generator</h1>
       </header>
-
-      <section className="password-showcase">
-        <input
-          type="text"
-          value={password}
-          readOnly
-          className="password-output"
-          placeholder="Your secure password"
-        />
-      </section>
-
-      <form
-        className="password-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleGenerate();
-        }}
-      >
-        <div className="form-group">
-          <label htmlFor="length-slider">
-            Length: <strong>{length}</strong>
-          </label>
+      <main className="app-window">
+        <section className="password-showcase">
           <input
-            id="length-slider"
-            type="range"
-            min="6"
-            max="32"
-            value={length}
-            onChange={(e) => setLength(Number(e.target.value))}
+            type="text"
+            value={password}
+            readOnly
+            className="password-output"
+            placeholder="Your secure password"
           />
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={includeUppercase}
-              onChange={(e) => setIncludeUppercase(e.target.checked)}
-            />
-            Include Uppercase Letters
-          </label>
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={includeLowercase}
-              onChange={(e) => setIncludeLowercase(e.target.checked)}
-            />
-            Include Lowercase Letters
-          </label>
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={includeNumbers}
-              onChange={(e) => setIncludeNumbers(e.target.checked)}
-            />
-            Include Numbers
-          </label>
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={includeSymbols}
-              onChange={(e) => setIncludeSymbols(e.target.checked)}
-            />
-            Include Symbols
-          </label>
-        </div>
-        <button type="submit" className="button">
-          Generate Password
-        </button>
-      </form>
+        </section>
 
+        <form
+          className="password-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleGenerate();
+          }}
+        >
+          <div className="form-group">
+            <label htmlFor="length-slider">
+              Length: <strong>{length}</strong>
+            </label>
+            <input
+              id="length-slider"
+              type="range"
+              min="6"
+              max="32"
+              value={length}
+              onChange={(e) => setLength(Number(e.target.value))}
+            />
+          </div>
+          <div className="form-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={includeUppercase}
+                onChange={(e) => setIncludeUppercase(e.target.checked)}
+              />
+              Include Uppercase Letters
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={includeLowercase}
+                onChange={(e) => setIncludeLowercase(e.target.checked)}
+              />
+              Include Lowercase Letters
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={includeNumbers}
+                onChange={(e) => setIncludeNumbers(e.target.checked)}
+              />
+              Include Numbers
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={includeSymbols}
+                onChange={(e) => setIncludeSymbols(e.target.checked)}
+              />
+              Include Symbols
+            </label>
+          </div>
+          <button type="submit" className="button">
+            Generate
+          </button>
+        </form>
+      </main>
       <footer>
         <small>
           &copy; {new Date().getFullYear()} Vladyslav Shulhach. All rights
