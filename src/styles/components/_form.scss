@@ -1,0 +1,44 @@
+@use "../abstracts/variables" as *;
+
+.password-showcase {
+  margin-bottom: 1.5rem;
+  background-color: $color-app-bg;
+  width: 100%;
+}
+
+.password-output {
+  width: 100%;
+  padding: 0.75em;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  border: none;
+  color: $color-primary;
+  letter-spacing: 0.08em;
+  font-family: "Fira Mono", "Consolas", monospace;
+}
+
+.password-form {
+  width: 100%;
+  padding: 1rem;
+  background-color: $color-app-bg;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: $color-primary;
+}
+
+input[type="checkbox"] {
+  accent-color: $color-primary;
+  width: 1.1em;
+  height: 1.1em;
+}
