@@ -1,1 +1,60 @@
-/*# sourceMappingURL=index.css.map */
+.button {
+  width: 100%;
+  padding: 0.75em;
+  border-radius: 0.5em;
+  border: none;
+  background: #c6ff00;
+  color: #23232b;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: background 0.2s;
+  font-family: "Arial", sans-serif;
+}
+.button:hover {
+  background: #9ecc00;
+}
+
+.password-showcase {
+  margin-bottom: 1.5rem;
+  background-color: #23232b;
+  width: 100%;
+}
+
+.password-output {
+  width: 100%;
+  padding: 0.75em;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  border: none;
+  color: #c6ff00;
+  letter-spacing: 0.08em;
+  font-family: "Fira Mono", "Consolas", monospace;
+}
+
+.password-form {
+  width: 100%;
+  padding: 1rem;
+  background-color: #23232b;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+input[type=range] {
+  width: 100%;
+  accent-color: #c6ff00;
+}
+
+input[type=checkbox] {
+  accent-color: #c6ff00;
+  width: 1.1em;
+  height: 1.1em;
+}/*# sourceMappingURL=index.css.map */
