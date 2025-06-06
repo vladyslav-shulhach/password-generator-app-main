@@ -20,8 +20,8 @@ function App() {
   };
 
   return (
-    <div>
-      <header>
+    <div className="app-container">
+      <header className="app-header">
         <h1>Password Generator</h1>
       </header>
       <main className="app-window">
@@ -53,6 +53,7 @@ function App() {
               max="32"
               value={length}
               onChange={(e) => setLength(Number(e.target.value))}
+              className="length-slider"
             />
           </div>
           <div className="form-group">
@@ -61,6 +62,7 @@ function App() {
                 type="checkbox"
                 checked={includeUppercase}
                 onChange={(e) => setIncludeUppercase(e.target.checked)}
+                className="checkbox"
               />
               Include Uppercase Letters
             </label>
@@ -71,6 +73,7 @@ function App() {
                 type="checkbox"
                 checked={includeLowercase}
                 onChange={(e) => setIncludeLowercase(e.target.checked)}
+                className="checkbox"
               />
               Include Lowercase Letters
             </label>
@@ -81,6 +84,7 @@ function App() {
                 type="checkbox"
                 checked={includeNumbers}
                 onChange={(e) => setIncludeNumbers(e.target.checked)}
+                className="checkbox"
               />
               Include Numbers
             </label>
@@ -91,15 +95,19 @@ function App() {
                 type="checkbox"
                 checked={includeSymbols}
                 onChange={(e) => setIncludeSymbols(e.target.checked)}
+                className="checkbox"
               />
               Include Symbols
             </label>
           </div>
           <div className="password-strength">
-            <span>Password strength: </span>
+            <span>Strength: </span>
             <span className="strength-value">Medium</span>
             <div className="strength-bar">
-              <div className="strength-bar__fill strength-bar__fill--medium" />
+              <div className="strength-bar__rect strength-bar__rect--medium" />
+              <div className="strength-bar__rect strength-bar__rect--medium" />
+              <div className="strength-bar__rect" />
+              <div className="strength-bar__rect" />
             </div>
           </div>
           <button type="submit" className="button">
@@ -107,7 +115,7 @@ function App() {
           </button>
         </form>
       </main>
-      <footer>
+      <footer className="app-footer">
         <small>
           &copy; {new Date().getFullYear()} Vladyslav Shulhach. All rights
           reserved.
