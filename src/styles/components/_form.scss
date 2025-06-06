@@ -72,3 +72,46 @@ input[type="checkbox"] {
     display: block;
   }
 }
+
+.password-strength {
+  margin: 1.2rem 0 1.5rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+
+  span {
+    color: oppacity(0.8);
+  }
+
+  .strength-bar {
+    display: flex;
+    gap: 0.4em;
+  }
+
+  .strength-bar__rect {
+    width: 0.7em;
+    height: 2rem;
+    background: #222;
+    border: 1.5px solid $color-font;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .strength-bar__rect--weak {
+    background: $strength-weak;
+    border-color: $strength-weak;
+  }
+  .strength-bar__rect--medium {
+    background: $strength-medium;
+    border-color: $strength-medium;
+  }
+  .strength-bar__rect--moderate {
+    background: $strength-moderate;
+    border-color: $strength-moderate;
+  }
+  .strength-bar__rect--strong {
+    background: $strength-strong;
+    border-color: $strength-strong;
+  }
+}
