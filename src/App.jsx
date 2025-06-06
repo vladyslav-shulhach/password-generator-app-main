@@ -103,7 +103,7 @@ function App() {
             </div>
           </div>
           <button type="submit" className="button">
-            Generate
+            Generate <span className="arrow">&rarr;</span>
           </button>
         </form>
       </main>

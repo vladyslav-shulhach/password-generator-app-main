@@ -3,7 +3,6 @@
 .button {
   width: 100%;
   padding: 0.75em;
-  border-radius: 0.5em;
   border: none;
   background: $color-primary;
   color: $color-app-bg;
@@ -13,8 +12,9 @@
   margin-top: 1em;
   transition: background 0.2s;
   font-family: $font-family-normal;
+  text-transform: uppercase;
 
   &:hover {
-    background: darken($color-primary, 10%);
+    background: darken($color-primary, 7%);
   }
 }
