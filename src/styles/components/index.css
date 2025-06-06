@@ -86,4 +86,43 @@ input[type=checkbox]:checked::after {
   transform: rotate(45deg);
   pointer-events: none;
   display: block;
+}
+
+.password-strength {
+  margin: 1.2rem 0 1.5rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+.password-strength span {
+  color: oppacity(0.8);
+}
+.password-strength .strength-bar {
+  display: flex;
+  gap: 0.4em;
+}
+.password-strength .strength-bar__rect {
+  width: 0.7em;
+  height: 2rem;
+  background: #222;
+  border: 1.5px solid #f8f9fa;
+  transition: background 0.2s, border-color 0.2s;
+}
+.password-strength .strength-bar__rect--weak {
+  background: #ff3b3b;
+  border-color: #ff3b3b;
+}
+.password-strength .strength-bar__rect--medium {
+  background: #ff9900;
+  border-color: #ff9900;
+}
+.password-strength .strength-bar__rect--moderate {
+  background: #ffe600;
+  border-color: #ffe600;
+}
+.password-strength .strength-bar__rect--strong {
+  background: #4caf50;
+  border-color: #4caf50;
 }/*# sourceMappingURL=index.css.map */
