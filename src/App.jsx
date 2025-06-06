@@ -95,6 +95,13 @@ function App() {
               Include Symbols
             </label>
           </div>
+          <div className="password-strength">
+            <span>Password strength: </span>
+            <span className="strength-value">Medium</span>
+            <div className="strength-bar">
+              <div className="strength-bar__fill strength-bar__fill--medium" />
+            </div>
+          </div>
           <button type="submit" className="button">
             Generate
           </button>
