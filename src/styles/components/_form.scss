@@ -10,7 +10,6 @@
   width: 100%;
   padding: 0.75em;
   font-size: 1.2em;
-  border-radius: 0.5em;
   border: none;
   color: $color-primary;
   letter-spacing: 0.08em;
@@ -32,13 +31,44 @@
   gap: 0.5rem;
 }
 
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 input[type="range"] {
   width: 100%;
   accent-color: $color-primary;
 }
 
 input[type="checkbox"] {
-  accent-color: $color-primary;
-  width: 1.1em;
-  height: 1.1em;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid $color-font;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:checked {
+    background: $color-primary;
+    border-color: $color-primary;
+  }
+
+  &:checked::after {
+    content: "";
+    position: absolute;
+    left: 0.32em;
+    top: 0.12em;
+    width: 0.35em;
+    height: 0.7em;
+    border: solid #111;
+    border-width: 0 0.18em 0.18em 0;
+    transform: rotate(45deg);
+    pointer-events: none;
+    display: block;
+  }
 }
