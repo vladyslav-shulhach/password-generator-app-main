@@ -111,7 +111,7 @@ footer {
 .button {
   width: 100%;
   padding: 0.75em;
-  border: none;
+  border: 2px solid transparent;
   background: #c6ff00;
   color: #23232b;
   font-size: 1.1em;
@@ -123,7 +123,9 @@ footer {
   text-transform: uppercase;
 }
 .button:hover {
-  background: #aadb00;
+  background: #111;
+  color: #c6ff00;
+  border-color: #c6ff00;
 }
 
 .password-showcase {
@@ -166,6 +168,11 @@ label {
 input[type=range] {
   width: 100%;
   accent-color: #c6ff00;
+  transition: background 0.2s, border 0.2s;
+}
+input[type=range]:hover {
+  background: #111;
+  border: 2px solid #c6ff00;
 }
 
 input[type=checkbox] {
@@ -179,6 +186,9 @@ input[type=checkbox] {
   position: relative;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
+}
+input[type=checkbox]:hover {
+  border-color: #c6ff00;
 }
 input[type=checkbox]:checked {
   background: #c6ff00;
