@@ -3,7 +3,7 @@
 .button {
   width: 100%;
   padding: 0.75em;
-  border: none;
+  border: 2px solid transparent;
   background: $color-primary;
   color: $color-app-bg;
   font-size: 1.1em;
@@ -15,6 +15,8 @@
   text-transform: uppercase;
 
   &:hover {
-    background: darken($color-primary, 7%);
+    background: #111;
+    color: $color-primary;
+    border-color: $color-primary;
   }
 }
