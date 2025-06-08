@@ -43,7 +43,7 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- Vanilla JavaScript (ES6+)
+- React
 - Accessibility best practices (aria-live, input validation)
 
 ### What I learned
