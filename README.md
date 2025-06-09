@@ -48,6 +48,8 @@ Users should be able to:
 
 ### What I learned
 
+This project is my first time using React. I learned how to structure a React app, manage state, and integrate SCSS for styling components.
+
 ### Continued development
 
 ## Author
