@@ -13,7 +13,14 @@
   text-transform: uppercase;
 }
 .button:hover {
-  background: #111;
+  background: #23232b;
+  color: #c6ff00;
+  border-color: #c6ff00;
+}
+.button:active {
+  outline: 2px solid #c6ff00;
+  outline-offset: 2px;
+  background: #23232b;
   color: #c6ff00;
   border-color: #c6ff00;
 }
