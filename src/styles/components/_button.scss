@@ -15,7 +15,15 @@
   text-transform: uppercase;
 
   &:hover {
-    background: #111;
+    background: $color-app-bg;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+
+  &:active {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    background: $color-app-bg;
     color: $color-primary;
     border-color: $color-primary;
   }
