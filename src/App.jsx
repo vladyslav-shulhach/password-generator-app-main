@@ -9,6 +9,7 @@ function App() {
   const [includeLowercase, setIncludeLowercase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(false);
+  const [warning, setWarning] = useState("");
 
   useEffect(() => {
     document.title = "Password Generator App | Vladyslav Shulhach";
@@ -26,6 +27,19 @@ function App() {
     if (includeLowercase) characters += lower;
     if (includeNumbers) characters += numbers;
     if (includeSymbols) characters += symbols;
+
+    if (
+      !includeUppercase &&
+      !includeLowercase &&
+      !includeNumbers &&
+      !includeSymbols
+    ) {
+      setWarning("Please select at least one character type.");
+      setPassword("");
+      return;
+    }
+
+    setWarning("");
 
     let generatedPassword = "";
     for (let i = 0; i < length; i++) {
@@ -45,7 +59,7 @@ function App() {
         <section className="password-showcase">
           <input
             type="text"
-            value={password}
+            value={warning ? warning : password}
             readOnly
             className="password-output"
             placeholder="Your secure password"
