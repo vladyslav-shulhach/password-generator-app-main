@@ -16,7 +16,24 @@ function App() {
 
   // Placeholder for password generation logic
   const handleGenerate = () => {
-    setPassword("P@ssw0rd123!"); // Replace with real logic
+    const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lower = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
+
+    let characters = "";
+    if (includeUppercase) characters += upper;
+    if (includeLowercase) characters += lower;
+    if (includeNumbers) characters += numbers;
+    if (includeSymbols) characters += symbols;
+
+    let generatedPassword = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      generatedPassword += characters[randomIndex];
+    }
+
+    setPassword(generatedPassword);
   };
 
   return (
