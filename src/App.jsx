@@ -13,7 +13,16 @@ function App() {
 
   useEffect(() => {
     document.title = "Password Generator App | Vladyslav Shulhach";
-  }, []);
+
+    if (
+      includeUppercase ||
+      includeLowercase ||
+      includeNumbers ||
+      includeSymbols
+    ) {
+      setWarning("");
+    }
+  }, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
 
   // Placeholder for password generation logic
   const handleGenerate = () => {
