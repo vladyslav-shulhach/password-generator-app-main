@@ -10,6 +10,7 @@ function App() {
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(false);
   const [warning, setWarning] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState("");
 
   useEffect(() => {
     document.title = "Password Generator App | Vladyslav Shulhach";
@@ -22,9 +23,28 @@ function App() {
     ) {
       setWarning("");
     }
-  }, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
 
-  // Placeholder for password generation logic
+    if (password) {
+      setPasswordStrength(
+        getPasswordStrength(password, {
+          includeUppercase,
+          includeLowercase,
+          includeNumbers,
+          includeSymbols,
+        })
+      );
+    } else {
+      setPasswordStrength("");
+    }
+  }, [
+    password,
+    includeUppercase,
+    includeLowercase,
+    includeNumbers,
+    includeSymbols,
+  ]);
+
+  // Password generation logic
   const handleGenerate = () => {
     const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lower = "abcdefghijklmnopqrstuvwxyz";
@@ -58,6 +78,22 @@ function App() {
 
     setPassword(generatedPassword);
   };
+
+  // Password strength logic
+  function getPasswordStrength(password, options) {
+    let score = 0;
+    if (options.includeUppercase) score++;
+    if (options.includeLowercase) score++;
+    if (options.includeNumbers) score++;
+    if (options.includeSymbols) score++;
+    if (password.length >= 12) score++;
+    if (password.length >= 16) score++;
+
+    if (score <= 2) return "Weak";
+    if (score === 3) return "Medium";
+    if (score === 4) return "Moderate";
+    return "Strong";
+  }
 
   return (
     <div className="app-container">
@@ -142,12 +178,34 @@ function App() {
           </div>
           <div className="password-strength">
             <span>Strength: </span>
-            <span className="strength-value">Medium</span>
+            <span className="strength-value">{passwordStrength || "-"}</span>
             <div className="strength-bar">
-              <div className="strength-bar__rect strength-bar__rect--medium" />
-              <div className="strength-bar__rect strength-bar__rect--medium" />
-              <div className="strength-bar__rect" />
-              <div className="strength-bar__rect" />
+              <div
+                className={`strength-bar__rect ${
+                  passwordStrength === "Weak" ? "strength-bar__rect--weak" : ""
+                }`}
+              />
+              <div
+                className={`strength-bar__rect ${
+                  passwordStrength === "Medium"
+                    ? "strength-bar__rect--medium"
+                    : ""
+                }`}
+              />
+              <div
+                className={`strength-bar__rect ${
+                  passwordStrength === "Moderate"
+                    ? "strength-bar__rect--moderate"
+                    : ""
+                }`}
+              />
+              <div
+                className={`strength-bar__rect ${
+                  passwordStrength === "Strong"
+                    ? "strength-bar__rect--strong"
+                    : ""
+                }`}
+              />
             </div>
           </div>
           <button type="submit" className="button">
