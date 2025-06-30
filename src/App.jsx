@@ -95,6 +95,14 @@ function App() {
     return "Strong";
   }
 
+  // Map the password strength to a visual representation
+  const strengthLevels = {
+    Weak: { count: 1, className: "strength-bar__rect--weak" },
+    Medium: { count: 2, className: "strength-bar__rect--medium" },
+    Moderate: { count: 3, className: "strength-bar__rect--moderate" },
+    Strong: { count: 4, className: "strength-bar__rect--strong" },
+  };
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -180,32 +188,20 @@ function App() {
             <span>Strength: </span>
             <span className="strength-value">{passwordStrength || "-"}</span>
             <div className="strength-bar">
-              <div
-                className={`strength-bar__rect ${
-                  passwordStrength === "Weak" ? "strength-bar__rect--weak" : ""
-                }`}
-              />
-              <div
-                className={`strength-bar__rect ${
-                  passwordStrength === "Medium"
-                    ? "strength-bar__rect--medium"
-                    : ""
-                }`}
-              />
-              <div
-                className={`strength-bar__rect ${
-                  passwordStrength === "Moderate"
-                    ? "strength-bar__rect--moderate"
-                    : ""
-                }`}
-              />
-              <div
-                className={`strength-bar__rect ${
-                  passwordStrength === "Strong"
-                    ? "strength-bar__rect--strong"
-                    : ""
-                }`}
-              />
+              {[0, 1, 2, 3].map((index) => {
+                const level = strengthLevels[passwordStrength];
+                return (
+                  <div
+                    key={index}
+                    className={
+                      "strength-bar__rect" +
+                      (level && index < level.count
+                        ? ` ${level.className}`
+                        : "")
+                    }
+                  ></div>
+                );
+              })}
             </div>
           </div>
           <button type="submit" className="button">
