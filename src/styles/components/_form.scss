@@ -4,6 +4,9 @@
   margin-bottom: 1.5rem;
   background-color: $color-app-bg;
   width: 100%;
+  @media (min-width: $breakpoint-tablet) {
+    padding: 0.5rem;
+  }
 }
 
 .password-output {
@@ -17,9 +20,20 @@
 }
 
 .password-form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 1rem;
   background-color: $color-app-bg;
+
+  @media (min-height: 700px) {
+    gap: 1rem;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
 }
 
 .form-group {

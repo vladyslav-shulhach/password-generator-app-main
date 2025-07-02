@@ -30,6 +30,11 @@
   background-color: #23232b;
   width: 100%;
 }
+@media (min-width: 768px) {
+  .password-showcase {
+    padding: 0.5rem;
+  }
+}
 
 .password-output {
   width: 100%;
@@ -42,9 +47,22 @@
 }
 
 .password-form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 1rem;
   background-color: #23232b;
+}
+@media (min-height: 700px) {
+  .password-form {
+    gap: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .password-form {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
 }
 
 .form-group {
