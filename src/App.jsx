@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { FiFile } from "react-icons/fi";
 
+// Main App Component
 function App() {
+  // State variables
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(12);
   const [includeUppercase, setIncludeUppercase] = useState(true);
@@ -12,9 +14,11 @@ function App() {
   const [passwordStrength, setPasswordStrength] = useState("");
   const [copied, setCopied] = useState(false);
 
+  // Update document title and password strength on relevant changes
   useEffect(() => {
     document.title = "Password Generator App | Vladyslav Shulhach";
 
+    // Clear warning if any character type is selected
     if (
       includeUppercase ||
       includeLowercase ||
@@ -24,6 +28,7 @@ function App() {
       setWarning("");
     }
 
+    // Update password strength
     if (password) {
       setPasswordStrength(
         getPasswordStrength(password, {
@@ -44,7 +49,7 @@ function App() {
     includeSymbols,
   ]);
 
-  // Password generation logic
+  // Generate a new password based on selected options
   const handleGenerate = () => {
     const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lower = "abcdefghijklmnopqrstuvwxyz";
@@ -57,6 +62,7 @@ function App() {
     if (includeNumbers) characters += numbers;
     if (includeSymbols) characters += symbols;
 
+    // Show warning if no character type is selected
     if (
       !includeUppercase &&
       !includeLowercase &&
@@ -70,6 +76,7 @@ function App() {
 
     setWarning("");
 
+    // Generate password
     let generatedPassword = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
@@ -79,7 +86,7 @@ function App() {
     setPassword(generatedPassword);
   };
 
-  // Password strength logic
+  // Determine password strength
   function getPasswordStrength(password, options) {
     let score = 0;
     if (options.includeUppercase) score++;
@@ -95,7 +102,7 @@ function App() {
     return "Strong";
   }
 
-  // Map the password strength to a visual representation
+  // Password strength levels for visual bar
   const strengthLevels = {
     Weak: { count: 1, className: "strength-bar__rect--weak" },
     Medium: { count: 2, className: "strength-bar__rect--medium" },
@@ -103,12 +110,32 @@ function App() {
     Strong: { count: 4, className: "strength-bar__rect--strong" },
   };
 
+  // Handle copy to clipboard
+  const handleCopy = () => {
+    if (password && !warning) {
+      navigator.clipboard.writeText(password);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1200);
+    }
+  };
+
+  // Handle keyboard copy (Enter/Space)
+  const handleCopyKeyDown = (e) => {
+    if ((e.key === "Enter" || e.key === " ") && password && !warning) {
+      handleCopy();
+    }
+  };
+
   return (
     <div className="app-container">
+      {/* Header */}
       <header className="app-header">
         <h1>Password Generator</h1>
       </header>
+
+      {/* Main Window */}
       <main className="app-window">
+        {/* Password Showcase */}
         <section className="password-showcase">
           <div className="password-showcase__row">
             <input
@@ -118,30 +145,15 @@ function App() {
               className="password-output"
               placeholder="Your secure password"
             />
+            {/* Copy Icon with duplicate on copy/hover/focus */}
             <span
               className={`copy-icon${copied ? " copied" : ""}`}
               title="Copy password"
               tabIndex={password && !warning ? 0 : -1}
               role="button"
               aria-label="Copy password"
-              onClick={() => {
-                if (password && !warning) {
-                  navigator.clipboard.writeText(password);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 1200);
-                }
-              }}
-              onKeyDown={(e) => {
-                if (
-                  (e.key === "Enter" || e.key === " ") &&
-                  password &&
-                  !warning
-                ) {
-                  navigator.clipboard.writeText(password);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 1200);
-                }
-              }}
+              onClick={handleCopy}
+              onKeyDown={handleCopyKeyDown}
               style={{
                 cursor: password && !warning ? "pointer" : "not-allowed",
                 opacity: password && !warning ? 1 : 0.5,
@@ -163,9 +175,11 @@ function App() {
               )}
             </span>
           </div>
+          {/* Copy feedback */}
           {copied && <span className="copy-feedback">Copied!</span>}
         </section>
 
+        {/* Password Options Form */}
         <form
           className="password-form"
           onSubmit={(e) => {
@@ -173,6 +187,7 @@ function App() {
             handleGenerate();
           }}
         >
+          {/* Length Slider */}
           <div className="form-group form-group--length">
             <label htmlFor="length-slider">Character Length</label>
             <span className="length-value">{length}</span>
@@ -187,6 +202,8 @@ function App() {
             className="length-slider"
             style={{ marginBottom: "1.2rem" }}
           />
+
+          {/* Character Type Options */}
           <div className="form-group">
             <label>
               <input
@@ -231,6 +248,8 @@ function App() {
               Include Symbols
             </label>
           </div>
+
+          {/* Password Strength Bar */}
           <div className="password-strength">
             <span>Strength:</span>
             <div className="strength-bar">
@@ -251,11 +270,15 @@ function App() {
               })}
             </div>
           </div>
+
+          {/* Generate Button */}
           <button type="submit" className="button">
             Generate <span className="arrow">&rarr;</span>
           </button>
         </form>
       </main>
+
+      {/* Footer */}
       <footer className="app-footer">
         <small>
           &copy; {new Date().getFullYear()} Vladyslav Shulhach. All rights

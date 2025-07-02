@@ -81,7 +81,6 @@
   justify-content: flex-start;
   gap: 0.5rem;
 
-  // Special layout for length slider group
   &.form-group--length {
     flex-direction: row;
     align-items: center;
@@ -165,7 +164,6 @@ input[type="checkbox"] {
   text-transform: uppercase;
 
   span {
-    // Remove opacity for strength value
     &.strength-value {
       opacity: 1;
       font-weight: bold;
@@ -174,7 +172,6 @@ input[type="checkbox"] {
       font-size: 1.5em;
       color: $color-primary;
     }
-    // Keep default for other spans if needed
     &:not(.strength-value) {
       opacity: 0.5;
     }
@@ -210,98 +207,4 @@ input[type="checkbox"] {
     background: $strength-strong;
     border-color: $strength-strong;
   }
-}
-
-span {
-  // Remove opacity for strength value
-  &.strength-value {
-    opacity: 1;
-    font-weight: bold;
-    margin-left: 1em;
-    margin-right: 0.5em;
-    font-size: 1.5em;
-    color: $color-primary;
-  }
-  // Keep default for other spans if needed
-  &:not(.strength-value) {
-    opacity: 0.5;
-  }
-}
-
-.strength-bar {
-  display: flex;
-  gap: 0.4em;
-  align-items: center;
-}
-
-.strength-bar__rect {
-  width: 0.7em;
-  height: 2rem;
-  background: #222;
-  border: 1.5px solid $color-font;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.strength-bar__rect--weak {
-  background: $strength-weak;
-  border-color: $strength-weak;
-}
-.strength-bar__rect--medium {
-  background: $strength-medium;
-  border-color: $strength-medium;
-}
-.strength-bar__rect--moderate {
-  background: $strength-moderate;
-  border-color: $strength-moderate;
-}
-.strength-bar__rect--strong {
-  background: $strength-strong;
-  border-color: $strength-strong;
-}
-
-span {
-  // Remove opacity for strength value
-  &.strength-value {
-    opacity: 1;
-    font-weight: bold;
-    margin-left: 1em;
-    margin-right: 0.5em;
-    font-size: 1.5em;
-    color: $color-primary;
-  }
-  // Keep default for other spans if needed
-  &:not(.strength-value) {
-    opacity: 0.5;
-  }
-}
-
-.strength-bar {
-  display: flex;
-  gap: 0.4em;
-  align-items: center;
-}
-
-.strength-bar__rect {
-  width: 0.7em;
-  height: 2rem;
-  background: #222;
-  border: 1.5px solid $color-font;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.strength-bar__rect--weak {
-  background: $strength-weak;
-  border-color: $strength-weak;
-}
-.strength-bar__rect--medium {
-  background: $strength-medium;
-  border-color: $strength-medium;
-}
-.strength-bar__rect--moderate {
-  background: $strength-moderate;
-  border-color: $strength-moderate;
-}
-.strength-bar__rect--strong {
-  background: $strength-strong;
-  border-color: $strength-strong;
 }
