@@ -61,7 +61,7 @@ label {
 }
 
 strong {
-  color: #c6ff00;
+  color: #a3faaf;
 }
 
 small {
@@ -97,7 +97,7 @@ header {
 
 main {
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -119,7 +119,7 @@ footer {
   width: 100%;
   padding: 0.75em;
   border: 2px solid transparent;
-  background: #c6ff00;
+  background: #a3faaf;
   color: #23232b;
   font-size: 1.1em;
   font-weight: bold;
@@ -131,15 +131,15 @@ footer {
 }
 .button:hover {
   background: #23232b;
-  color: #c6ff00;
-  border-color: #c6ff00;
+  color: #a3faaf;
+  border-color: #a3faaf;
 }
 .button:active {
-  outline: 2px solid #c6ff00;
+  outline: 2px solid #a3faaf;
   outline-offset: 2px;
   background: #23232b;
-  color: #c6ff00;
-  border-color: #c6ff00;
+  color: #a3faaf;
+  border-color: #a3faaf;
 }
 
 .password-showcase {
@@ -152,13 +152,19 @@ footer {
     padding: 0.5rem;
   }
 }
+.password-showcase .password-showcase__row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
 
 .password-output {
   width: 100%;
   padding: 0.75em;
   font-size: 1.2em;
   border: none;
-  color: #c6ff00;
+  color: #a3faaf;
   letter-spacing: 0.08em;
   font-family: "Fira Mono", "Consolas", monospace;
 }
@@ -178,7 +184,6 @@ footer {
 @media (min-width: 768px) {
   .password-form {
     padding: 1.5rem;
-    gap: 1.5rem;
   }
 }
 
@@ -190,6 +195,24 @@ footer {
   justify-content: flex-start;
   gap: 0.5rem;
 }
+.form-group.form-group--length {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.form-group.form-group--length label {
+  flex: 1;
+  margin-bottom: 0;
+}
+.form-group.form-group--length .length-value {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #a3faaf;
+  min-width: 2.5em;
+  text-align: right;
+  margin-left: 1em;
+}
 
 label {
   display: flex;
@@ -199,12 +222,12 @@ label {
 
 input[type=range] {
   width: 100%;
-  accent-color: #c6ff00;
+  accent-color: #a3faaf;
   transition: background 0.2s, border 0.2s;
 }
 input[type=range]:hover {
   background: #111;
-  border: 2px solid #c6ff00;
+  border: 2px solid #a3faaf;
 }
 
 input[type=checkbox] {
@@ -220,11 +243,11 @@ input[type=checkbox] {
   transition: background 0.2s, border-color 0.2s;
 }
 input[type=checkbox]:hover {
-  border-color: #c6ff00;
+  border-color: #a3faaf;
 }
 input[type=checkbox]:checked {
-  background: #c6ff00;
-  border-color: #c6ff00;
+  background: #a3faaf;
+  border-color: #a3faaf;
 }
 input[type=checkbox]:checked::after {
   content: "";
@@ -241,19 +264,29 @@ input[type=checkbox]:checked::after {
 }
 
 .password-strength {
-  margin: 1.2rem 0 1.5rem 0;
+  padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+  background-color: rgba(10, 10, 15, 0.4);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-transform: uppercase;
 }
-.password-strength span {
-  color: oppacity(0.8);
+.password-strength span.strength-value {
+  opacity: 1;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-right: 0.5em;
+  font-size: 1.5em;
+  color: #a3faaf;
+}
+.password-strength span:not(.strength-value) {
+  opacity: 0.5;
 }
 .password-strength .strength-bar {
   display: flex;
   gap: 0.4em;
+  align-items: center;
 }
 .password-strength .strength-bar__rect {
   width: 0.7em;
@@ -275,6 +308,52 @@ input[type=checkbox]:checked::after {
   border-color: #ffe600;
 }
 .password-strength .strength-bar__rect--strong {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
+span.strength-value {
+  opacity: 1;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-right: 0.5em;
+  font-size: 1.5em;
+  color: #a3faaf;
+}
+span:not(.strength-value) {
+  opacity: 0.5;
+}
+
+.strength-bar {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+}
+
+.strength-bar__rect {
+  width: 0.7em;
+  height: 2rem;
+  background: #222;
+  border: 1.5px solid #f8f9fa;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.strength-bar__rect--weak {
+  background: #ff3b3b;
+  border-color: #ff3b3b;
+}
+
+.strength-bar__rect--medium {
+  background: #ff9900;
+  border-color: #ff9900;
+}
+
+.strength-bar__rect--moderate {
+  background: #ffe600;
+  border-color: #ffe600;
+}
+
+.strength-bar__rect--strong {
   background: #4caf50;
   border-color: #4caf50;
 }/*# sourceMappingURL=main.css.map */

@@ -7,6 +7,13 @@
   @media (min-width: $breakpoint-tablet) {
     padding: 0.5rem;
   }
+
+  .password-showcase__row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
 }
 
 .password-output {
@@ -32,7 +39,6 @@
 
   @media (min-width: $breakpoint-tablet) {
     padding: 1.5rem;
-    gap: 1.5rem;
   }
 }
 
@@ -43,6 +49,27 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5rem;
+
+  // Special layout for length slider group
+  &.form-group--length {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    label {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .length-value {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: $color-primary;
+      min-width: 2.5em;
+      text-align: right;
+      margin-left: 1em;
+    }
+  }
 }
 
 label {
@@ -98,7 +125,8 @@ input[type="checkbox"] {
 }
 
 .password-strength {
-  margin: 1.2rem 0 1.5rem 0;
+  padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+  background-color: rgba($color-body-bg, 0.4);
   width: 100%;
   display: flex;
   align-items: center;
@@ -106,12 +134,25 @@ input[type="checkbox"] {
   text-transform: uppercase;
 
   span {
-    color: oppacity(0.8);
+    // Remove opacity for strength value
+    &.strength-value {
+      opacity: 1;
+      font-weight: bold;
+      margin-left: 1em;
+      margin-right: 0.5em;
+      font-size: 1.5em;
+      color: $color-primary;
+    }
+    // Keep default for other spans if needed
+    &:not(.strength-value) {
+      opacity: 0.5;
+    }
   }
 
   .strength-bar {
     display: flex;
     gap: 0.4em;
+    align-items: center;
   }
 
   .strength-bar__rect {
@@ -138,4 +179,51 @@ input[type="checkbox"] {
     background: $strength-strong;
     border-color: $strength-strong;
   }
+}
+
+span {
+  // Remove opacity for strength value
+  &.strength-value {
+    opacity: 1;
+    font-weight: bold;
+    margin-left: 1em;
+    margin-right: 0.5em;
+    font-size: 1.5em;
+    color: $color-primary;
+  }
+  // Keep default for other spans if needed
+  &:not(.strength-value) {
+    opacity: 0.5;
+  }
+}
+
+.strength-bar {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+}
+
+.strength-bar__rect {
+  width: 0.7em;
+  height: 2rem;
+  background: #222;
+  border: 1.5px solid $color-font;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.strength-bar__rect--weak {
+  background: $strength-weak;
+  border-color: $strength-weak;
+}
+.strength-bar__rect--medium {
+  background: $strength-medium;
+  border-color: $strength-medium;
+}
+.strength-bar__rect--moderate {
+  background: $strength-moderate;
+  border-color: $strength-moderate;
+}
+.strength-bar__rect--strong {
+  background: $strength-strong;
+  border-color: $strength-strong;
 }

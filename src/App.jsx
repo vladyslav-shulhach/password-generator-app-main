@@ -110,13 +110,15 @@ function App() {
       </header>
       <main className="app-window">
         <section className="password-showcase">
-          <input
-            type="text"
-            value={warning ? warning : password}
-            readOnly
-            className="password-output"
-            placeholder="Your secure password"
-          />
+          <div className="password-showcase__row">
+            <input
+              type="text"
+              value={warning ? warning : password}
+              readOnly
+              className="password-output"
+              placeholder="Your secure password"
+            />
+          </div>
         </section>
 
         <form
@@ -126,20 +128,20 @@ function App() {
             handleGenerate();
           }}
         >
-          <div className="form-group">
-            <label htmlFor="length-slider">
-              Length: <strong>{length}</strong>
-            </label>
-            <input
-              id="length-slider"
-              type="range"
-              min="6"
-              max="32"
-              value={length}
-              onChange={(e) => setLength(Number(e.target.value))}
-              className="length-slider"
-            />
+          <div className="form-group form-group--length">
+            <label htmlFor="length-slider">Character Length</label>
+            <span className="length-value">{length}</span>
           </div>
+          <input
+            id="length-slider"
+            type="range"
+            min="6"
+            max="32"
+            value={length}
+            onChange={(e) => setLength(Number(e.target.value))}
+            className="length-slider"
+            style={{ marginBottom: "1.2rem" }}
+          />
           <div className="form-group">
             <label>
               <input
@@ -185,9 +187,9 @@ function App() {
             </label>
           </div>
           <div className="password-strength">
-            <span>Strength: </span>
-            <span className="strength-value">{passwordStrength || "-"}</span>
+            <span>Strength:</span>
             <div className="strength-bar">
+              <span className="strength-value">{passwordStrength || "-"}</span>
               {[0, 1, 2, 3].map((index) => {
                 const level = strengthLevels[passwordStrength];
                 return (
