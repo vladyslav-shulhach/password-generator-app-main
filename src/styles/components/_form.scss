@@ -14,6 +14,37 @@
     width: 100%;
     gap: 0.5rem;
   }
+
+  .copy-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.2s, filter 0.2s;
+    cursor: pointer;
+    position: relative;
+
+    .copy-icon-duplicate {
+      color: $color-primary;
+      opacity: 0;
+      transition: opacity 0.18s;
+      z-index: 2;
+    }
+
+    &:hover .copy-icon-duplicate,
+    &:focus-visible .copy-icon-duplicate,
+    &.copied .copy-icon-duplicate {
+      opacity: 1;
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
 }
 
 .password-output {
@@ -179,6 +210,53 @@ input[type="checkbox"] {
     background: $strength-strong;
     border-color: $strength-strong;
   }
+}
+
+span {
+  // Remove opacity for strength value
+  &.strength-value {
+    opacity: 1;
+    font-weight: bold;
+    margin-left: 1em;
+    margin-right: 0.5em;
+    font-size: 1.5em;
+    color: $color-primary;
+  }
+  // Keep default for other spans if needed
+  &:not(.strength-value) {
+    opacity: 0.5;
+  }
+}
+
+.strength-bar {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+}
+
+.strength-bar__rect {
+  width: 0.7em;
+  height: 2rem;
+  background: #222;
+  border: 1.5px solid $color-font;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.strength-bar__rect--weak {
+  background: $strength-weak;
+  border-color: $strength-weak;
+}
+.strength-bar__rect--medium {
+  background: $strength-medium;
+  border-color: $strength-medium;
+}
+.strength-bar__rect--moderate {
+  background: $strength-moderate;
+  border-color: $strength-moderate;
+}
+.strength-bar__rect--strong {
+  background: $strength-strong;
+  border-color: $strength-strong;
 }
 
 span {

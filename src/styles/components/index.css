@@ -41,6 +41,31 @@
   width: 100%;
   gap: 0.5rem;
 }
+.password-showcase .copy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.2s, filter 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.password-showcase .copy-icon .copy-icon-duplicate {
+  color: #a3faaf;
+  opacity: 0;
+  transition: opacity 0.18s;
+  z-index: 2;
+}
+.password-showcase .copy-icon:hover .copy-icon-duplicate, .password-showcase .copy-icon:focus-visible .copy-icon-duplicate, .password-showcase .copy-icon.copied .copy-icon-duplicate {
+  opacity: 1;
+}
+.password-showcase .copy-icon:active {
+  transform: scale(0.92);
+}
 
 .password-output {
   width: 100%;
@@ -191,6 +216,52 @@ input[type=checkbox]:checked::after {
   border-color: #ffe600;
 }
 .password-strength .strength-bar__rect--strong {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
+span.strength-value {
+  opacity: 1;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-right: 0.5em;
+  font-size: 1.5em;
+  color: #a3faaf;
+}
+span:not(.strength-value) {
+  opacity: 0.5;
+}
+
+.strength-bar {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+}
+
+.strength-bar__rect {
+  width: 0.7em;
+  height: 2rem;
+  background: #222;
+  border: 1.5px solid #f8f9fa;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.strength-bar__rect--weak {
+  background: #ff3b3b;
+  border-color: #ff3b3b;
+}
+
+.strength-bar__rect--medium {
+  background: #ff9900;
+  border-color: #ff9900;
+}
+
+.strength-bar__rect--moderate {
+  background: #ffe600;
+  border-color: #ffe600;
+}
+
+.strength-bar__rect--strong {
   background: #4caf50;
   border-color: #4caf50;
 }

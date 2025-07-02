@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { FiFile } from "react-icons/fi";
 
 function App() {
   const [password, setPassword] = useState("");
@@ -11,6 +10,7 @@ function App() {
   const [includeSymbols, setIncludeSymbols] = useState(false);
   const [warning, setWarning] = useState("");
   const [passwordStrength, setPasswordStrength] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     document.title = "Password Generator App | Vladyslav Shulhach";
@@ -118,7 +118,52 @@ function App() {
               className="password-output"
               placeholder="Your secure password"
             />
+            <span
+              className={`copy-icon${copied ? " copied" : ""}`}
+              title="Copy password"
+              tabIndex={password && !warning ? 0 : -1}
+              role="button"
+              aria-label="Copy password"
+              onClick={() => {
+                if (password && !warning) {
+                  navigator.clipboard.writeText(password);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 1200);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (
+                  (e.key === "Enter" || e.key === " ") &&
+                  password &&
+                  !warning
+                ) {
+                  navigator.clipboard.writeText(password);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 1200);
+                }
+              }}
+              style={{
+                cursor: password && !warning ? "pointer" : "not-allowed",
+                opacity: password && !warning ? 1 : 0.5,
+                position: "relative",
+              }}
+            >
+              <FiFile size={32} />
+              {(copied || undefined) && (
+                <FiFile
+                  size={32}
+                  className="copy-icon-duplicate"
+                  style={{
+                    position: "absolute",
+                    left: "6px",
+                    top: "-6px",
+                    pointerEvents: "none",
+                  }}
+                />
+              )}
+            </span>
           </div>
+          {copied && <span className="copy-feedback">Copied!</span>}
         </section>
 
         <form
