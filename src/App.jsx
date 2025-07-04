@@ -140,7 +140,7 @@ function App() {
           <div className="password-showcase__row">
             <input
               type="text"
-              value={warning ? warning : password}
+              value={warning ? warning : copied ? "Copied!" : password}
               readOnly
               className="password-output"
               placeholder="Your secure password"
@@ -167,16 +167,16 @@ function App() {
                   className="copy-icon-duplicate"
                   style={{
                     position: "absolute",
-                    left: "6px",
-                    top: "-6px",
+                    left: 0,
+                    top: 0,
                     pointerEvents: "none",
+                    width: "100%",
+                    height: "100%",
                   }}
                 />
               )}
             </span>
           </div>
-          {/* Copy feedback */}
-          {copied && <span className="copy-feedback">Copied!</span>}
         </section>
 
         {/* Password Options Form */}
