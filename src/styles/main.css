@@ -152,7 +152,7 @@ footer {
     padding: 0.5rem;
   }
 }
-.password-showcase .password-showcase__row {
+.password-showcase__row {
   display: flex;
   align-items: center;
   width: 100%;
@@ -168,7 +168,7 @@ footer {
   cursor: pointer;
   position: relative;
 }
-.password-showcase .copy-icon .copy-icon-duplicate {
+.password-showcase .copy-icon-duplicate {
   color: #a3faaf;
   opacity: 0;
   transition: opacity 0.18s, transform 0.18s;
@@ -228,8 +228,7 @@ footer {
     padding: 1.5rem;
   }
 }
-
-.form-group {
+.password-form .form-group {
   margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -237,17 +236,17 @@ footer {
   justify-content: flex-start;
   gap: 0.5rem;
 }
-.form-group.form-group--length {
+.password-form .form-group--length {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
-.form-group.form-group--length label {
+.password-form .form-group--length label {
   flex: 1;
   margin-bottom: 0;
 }
-.form-group.form-group--length .length-value {
+.password-form .form-group--length .length-value {
   font-size: 1.5em;
   font-weight: bold;
   color: #a3faaf;
@@ -306,7 +305,7 @@ input[type=checkbox]:checked::after {
 }
 
 .password-strength {
-  padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   background-color: rgba(10, 10, 15, 0.4);
   width: 100%;
   display: flex;

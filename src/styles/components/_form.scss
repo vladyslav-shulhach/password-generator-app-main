@@ -4,11 +4,12 @@
   margin-bottom: 1.5rem;
   background-color: $color-app-bg;
   width: 100%;
+
   @media (min-width: $breakpoint-tablet) {
     padding: 0.5rem;
   }
 
-  .password-showcase__row {
+  &__row {
     display: flex;
     align-items: center;
     width: 100%;
@@ -27,7 +28,7 @@
     cursor: pointer;
     position: relative;
 
-    .copy-icon-duplicate {
+    &-duplicate {
       color: $color-primary;
       opacity: 0;
       transition: opacity 0.18s, transform 0.18s;
@@ -57,6 +58,7 @@
 
     &.copied {
       animation: copy-pop 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+
       .copy-icon-duplicate {
         opacity: 1;
         transform: scale(1.18) rotate(2deg);
@@ -87,37 +89,36 @@
   @media (min-height: 700px) {
     gap: 1rem;
   }
-
   @media (min-width: $breakpoint-tablet) {
     padding: 1.5rem;
   }
-}
 
-.form-group {
-  margin-bottom: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.5rem;
+  .form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
 
-  &.form-group--length {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    &--length {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
 
-    label {
-      flex: 1;
-      margin-bottom: 0;
-    }
-    .length-value {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: $color-primary;
-      min-width: 2.5em;
-      text-align: right;
-      margin-left: 1em;
+      label {
+        flex: 1;
+        margin-bottom: 0;
+      }
+      .length-value {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: $color-primary;
+        min-width: 2.5em;
+        text-align: right;
+        margin-left: 1em;
+      }
     }
   }
 }
@@ -175,7 +176,7 @@ input[type="checkbox"] {
 }
 
 .password-strength {
-  padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   background-color: rgba($color-body-bg, 0.4);
   width: 100%;
   display: flex;
@@ -205,37 +206,37 @@ input[type="checkbox"] {
     gap: 0.5em;
     align-items: center;
     min-width: 8em;
-  }
 
-  .strength-bar__rect {
-    width: 1.1em;
-    height: 1.8em;
-    background: $strength-neutral;
-    border: 2px solid $color-app-bg;
-    border-radius: 0.25em;
-    transition: background 0.2s, border-color 0.2s;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  }
+    &__rect {
+      width: 1.1em;
+      height: 1.8em;
+      background: $strength-neutral;
+      border: 2px solid $color-app-bg;
+      border-radius: 0.25em;
+      transition: background 0.2s, border-color 0.2s;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 
-  .strength-bar__rect--short {
-    background: $strength-short;
-    border-color: $strength-short;
-  }
-  .strength-bar__rect--weak {
-    background: $strength-weak;
-    border-color: $strength-weak;
-  }
-  .strength-bar__rect--medium {
-    background: $strength-medium;
-    border-color: $strength-medium;
-  }
-  .strength-bar__rect--strong {
-    background: $strength-strong;
-    border-color: $strength-strong;
-  }
-  .strength-bar__rect--very-strong {
-    background: $strength-very-strong;
-    border-color: $strength-very-strong;
+      &--short {
+        background: $strength-short;
+        border-color: $strength-short;
+      }
+      &--weak {
+        background: $strength-weak;
+        border-color: $strength-weak;
+      }
+      &--medium {
+        background: $strength-medium;
+        border-color: $strength-medium;
+      }
+      &--strong {
+        background: $strength-strong;
+        border-color: $strength-strong;
+      }
+      &--very-strong {
+        background: $strength-very-strong;
+        border-color: $strength-very-strong;
+      }
+    }
   }
 }
 
