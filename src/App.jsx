@@ -94,10 +94,12 @@ function App() {
 
     if (length === 0) return { label: "", level: 0 };
     if (length < 8) return { label: "Too Short", level: 1 };
-    if (types === 1 || length < 10) return { label: "Weak", level: 2 };
-    if (types === 2 || length < 12) return { label: "Medium", level: 3 };
-    if (types >= 3 && length < 16) return { label: "Strong", level: 4 };
-    if (types === 4 && length >= 16) return { label: "Very Strong", level: 5 };
+    if (length >= 24 && types === 4) return { label: "Very Strong", level: 5 };
+    if ((length >= 18 && types >= 3) || (length >= 24 && types === 2))
+      return { label: "Strong", level: 4 };
+    if ((length >= 14 && types === 2) || (length >= 8 && types === 2))
+      return { label: "Medium", level: 3 };
+    if (length < 14 || types === 1) return { label: "Weak", level: 2 };
     return { label: "Medium", level: 3 };
   }
 
