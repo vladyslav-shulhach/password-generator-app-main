@@ -72,6 +72,7 @@
   color: #a3faaf;
   letter-spacing: 0.08em;
   font-family: "Fira Mono", "Consolas", monospace;
+  background-color: #23232b;
 }
 
 .password-form {
@@ -131,7 +132,7 @@ input[type=range] {
   transition: background 0.2s, border 0.2s;
 }
 input[type=range]:hover {
-  background: #111;
+  background: #0a0a0f;
   border: 2px solid #a3faaf;
 }
 
@@ -161,7 +162,7 @@ input[type=checkbox]:checked::after {
   top: 0.12em;
   width: 0.35em;
   height: 0.7em;
-  border: solid #111;
+  border: solid #23232b;
   border-width: 0 0.18em 0.18em 0;
   transform: rotate(45deg);
   pointer-events: none;
@@ -184,21 +185,31 @@ input[type=checkbox]:checked::after {
   margin-right: 0.5em;
   font-size: 1.5em;
   color: #a3faaf;
+  min-width: 6em;
+  letter-spacing: 0.05em;
+  text-align: left;
 }
 .password-strength span:not(.strength-value) {
   opacity: 0.5;
 }
 .password-strength .strength-bar {
   display: flex;
-  gap: 0.4em;
+  gap: 0.5em;
   align-items: center;
+  min-width: 8em;
 }
 .password-strength .strength-bar__rect {
-  width: 0.7em;
-  height: 2rem;
-  background: #222;
-  border: 1.5px solid #f8f9fa;
+  width: 1.1em;
+  height: 1.8em;
+  background: #23232b;
+  border: 2px solid #23232b;
+  border-radius: 0.25em;
   transition: background 0.2s, border-color 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.password-strength .strength-bar__rect--short {
+  background: #b71c1c;
+  border-color: #b71c1c;
 }
 .password-strength .strength-bar__rect--weak {
   background: #ff3b3b;
@@ -208,11 +219,11 @@ input[type=checkbox]:checked::after {
   background: #ff9900;
   border-color: #ff9900;
 }
-.password-strength .strength-bar__rect--moderate {
-  background: #ffe600;
-  border-color: #ffe600;
-}
 .password-strength .strength-bar__rect--strong {
   background: #4caf50;
   border-color: #4caf50;
+}
+.password-strength .strength-bar__rect--very-strong {
+  background: #00e676;
+  border-color: #00e676;
 }/*# sourceMappingURL=index.css.map */

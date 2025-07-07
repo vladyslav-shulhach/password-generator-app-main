@@ -52,6 +52,7 @@
   color: $color-primary;
   letter-spacing: 0.08em;
   font-family: "Fira Mono", "Consolas", monospace;
+  background-color: $color-app-bg;
 }
 
 .password-form {
@@ -111,7 +112,7 @@ input[type="range"] {
   transition: background 0.2s, border 0.2s;
 
   &:hover {
-    background: #111;
+    background: $color-body-bg;
     border: 2px solid $color-primary;
   }
 }
@@ -143,7 +144,7 @@ input[type="checkbox"] {
     top: 0.12em;
     width: 0.35em;
     height: 0.7em;
-    border: solid #111;
+    border: solid $color-app-bg;
     border-width: 0 0.18em 0.18em 0;
     transform: rotate(45deg);
     pointer-events: none;
@@ -168,6 +169,9 @@ input[type="checkbox"] {
       margin-right: 0.5em;
       font-size: 1.5em;
       color: $color-primary;
+      min-width: 6em;
+      letter-spacing: 0.05em;
+      text-align: left;
     }
     &:not(.strength-value) {
       opacity: 0.5;
@@ -176,18 +180,25 @@ input[type="checkbox"] {
 
   .strength-bar {
     display: flex;
-    gap: 0.4em;
+    gap: 0.5em;
     align-items: center;
+    min-width: 8em;
   }
 
   .strength-bar__rect {
-    width: 0.7em;
-    height: 2rem;
-    background: #222;
-    border: 1.5px solid $color-font;
+    width: 1.1em;
+    height: 1.8em;
+    background: $strength-neutral;
+    border: 2px solid $color-app-bg;
+    border-radius: 0.25em;
     transition: background 0.2s, border-color 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   }
 
+  .strength-bar__rect--short {
+    background: $strength-short;
+    border-color: $strength-short;
+  }
   .strength-bar__rect--weak {
     background: $strength-weak;
     border-color: $strength-weak;
@@ -196,12 +207,12 @@ input[type="checkbox"] {
     background: $strength-medium;
     border-color: $strength-medium;
   }
-  .strength-bar__rect--moderate {
-    background: $strength-moderate;
-    border-color: $strength-moderate;
-  }
   .strength-bar__rect--strong {
     background: $strength-strong;
     border-color: $strength-strong;
+  }
+  .strength-bar__rect--very-strong {
+    background: $strength-very-strong;
+    border-color: $strength-very-strong;
   }
 }

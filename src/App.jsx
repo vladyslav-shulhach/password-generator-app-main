@@ -11,7 +11,10 @@ function App() {
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(false);
   const [warning, setWarning] = useState("");
-  const [passwordStrength, setPasswordStrength] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState({
+    label: "",
+    level: 0,
+  });
   const [copied, setCopied] = useState(false);
 
   // Update document title and password strength on relevant changes
@@ -28,19 +31,8 @@ function App() {
       setWarning("");
     }
 
-    // Update password strength
-    if (password) {
-      setPasswordStrength(
-        getPasswordStrength(password, {
-          includeUppercase,
-          includeLowercase,
-          includeNumbers,
-          includeSymbols,
-        })
-      );
-    } else {
-      setPasswordStrength("");
-    }
+    // Update password strength based on actual password content
+    setPasswordStrength(getPasswordStrength(password));
   }, [
     password,
     includeUppercase,
@@ -56,19 +48,13 @@ function App() {
     const numbers = "0123456789";
     const symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
 
-    let characters = "";
-    if (includeUppercase) characters += upper;
-    if (includeLowercase) characters += lower;
-    if (includeNumbers) characters += numbers;
-    if (includeSymbols) characters += symbols;
+    let charSets = [];
+    if (includeUppercase) charSets.push(upper);
+    if (includeLowercase) charSets.push(lower);
+    if (includeNumbers) charSets.push(numbers);
+    if (includeSymbols) charSets.push(symbols);
 
-    // Show warning if no character type is selected
-    if (
-      !includeUppercase &&
-      !includeLowercase &&
-      !includeNumbers &&
-      !includeSymbols
-    ) {
+    if (charSets.length === 0) {
       setWarning("Please select at least one character type.");
       setPassword("");
       return;
@@ -76,39 +62,54 @@ function App() {
 
     setWarning("");
 
-    // Generate password
-    let generatedPassword = "";
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      generatedPassword += characters[randomIndex];
+    // Guarantee at least one character from each selected type
+    let generatedPassword = charSets.map(
+      (set) => set[Math.floor(Math.random() * set.length)]
+    );
+
+    // Fill the rest randomly
+    let allChars = charSets.join("");
+    for (let i = generatedPassword.length; i < length; i++) {
+      generatedPassword.push(
+        allChars[Math.floor(Math.random() * allChars.length)]
+      );
     }
+
+    // Shuffle the result
+    generatedPassword = generatedPassword
+      .sort(() => Math.random() - 0.5)
+      .join("");
 
     setPassword(generatedPassword);
   };
 
   // Determine password strength
-  function getPasswordStrength(password, options) {
-    let score = 0;
-    if (options.includeUppercase) score++;
-    if (options.includeLowercase) score++;
-    if (options.includeNumbers) score++;
-    if (options.includeSymbols) score++;
-    if (password.length >= 12) score++;
-    if (password.length >= 16) score++;
+  function getPasswordStrength(password) {
+    const length = password.length;
+    let types = 0;
+    if (/[A-Z]/.test(password)) types++;
+    if (/[a-z]/.test(password)) types++;
+    if (/[0-9]/.test(password)) types++;
+    if (/[^A-Za-z0-9]/.test(password)) types++;
 
-    if (score <= 2) return "Weak";
-    if (score === 3) return "Medium";
-    if (score === 4) return "Moderate";
-    return "Strong";
+    if (length === 0) return { label: "", level: 0 };
+    if (length < 8) return { label: "Too Short", level: 1 };
+    if (types === 1 || length < 10) return { label: "Weak", level: 2 };
+    if (types === 2 || length < 12) return { label: "Medium", level: 3 };
+    if (types >= 3 && length < 16) return { label: "Strong", level: 4 };
+    if (types === 4 && length >= 16) return { label: "Very Strong", level: 5 };
+    return { label: "Medium", level: 3 };
   }
 
   // Password strength levels for visual bar
-  const strengthLevels = {
-    Weak: { count: 1, className: "strength-bar__rect--weak" },
-    Medium: { count: 2, className: "strength-bar__rect--medium" },
-    Moderate: { count: 3, className: "strength-bar__rect--moderate" },
-    Strong: { count: 4, className: "strength-bar__rect--strong" },
-  };
+  const strengthLevels = [
+    { label: "", className: "" },
+    { label: "Too Short", className: "strength-bar__rect--short" },
+    { label: "Weak", className: "strength-bar__rect--weak" },
+    { label: "Medium", className: "strength-bar__rect--medium" },
+    { label: "Strong", className: "strength-bar__rect--strong" },
+    { label: "Very Strong", className: "strength-bar__rect--very-strong" },
+  ];
 
   // Handle copy to clipboard
   const handleCopy = () => {
@@ -253,21 +254,20 @@ function App() {
           <div className="password-strength">
             <span>Strength:</span>
             <div className="strength-bar">
-              <span className="strength-value">{passwordStrength || "-"}</span>
-              {[0, 1, 2, 3].map((index) => {
-                const level = strengthLevels[passwordStrength];
-                return (
-                  <div
-                    key={index}
-                    className={
-                      "strength-bar__rect" +
-                      (level && index < level.count
-                        ? ` ${level.className}`
-                        : "")
-                    }
-                  ></div>
-                );
-              })}
+              <span className="strength-value">
+                {passwordStrength.label || "-"}
+              </span>
+              {[1, 2, 3, 4, 5].map((index) => (
+                <div
+                  key={index}
+                  className={
+                    "strength-bar__rect" +
+                    (passwordStrength.level >= index
+                      ? ` ${strengthLevels[passwordStrength.level]?.className}`
+                      : "")
+                  }
+                ></div>
+              ))}
             </div>
           </div>
 
