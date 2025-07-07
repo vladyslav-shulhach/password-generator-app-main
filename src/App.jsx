@@ -86,6 +86,14 @@ function App() {
   // Determine password strength
   function getPasswordStrength(password) {
     const length = password.length;
+    // Count selected types
+    const selectedTypes =
+      (includeUppercase ? 1 : 0) +
+      (includeLowercase ? 1 : 0) +
+      (includeNumbers ? 1 : 0) +
+      (includeSymbols ? 1 : 0);
+
+    // Count actual types present in password
     let types = 0;
     if (/[A-Z]/.test(password)) types++;
     if (/[a-z]/.test(password)) types++;
@@ -94,13 +102,18 @@ function App() {
 
     if (length === 0) return { label: "", level: 0 };
     if (length < 8) return { label: "Too Short", level: 1 };
-    if (length >= 24 && types === 4) return { label: "Very Strong", level: 5 };
-    if ((length >= 18 && types >= 3) || (length >= 24 && types === 2))
-      return { label: "Strong", level: 4 };
-    if ((length >= 14 && types === 2) || (length >= 8 && types === 2))
-      return { label: "Medium", level: 3 };
-    if (length < 14 || types === 1) return { label: "Weak", level: 2 };
-    return { label: "Medium", level: 3 };
+
+    // The more types unchecked, the higher the thresholds
+    // For each missing type, shift thresholds up by 1 "step"
+    const missingTypes = 4 - selectedTypes;
+    const weakMax = 13 + missingTypes * 4;
+    const mediumMax = 17 + missingTypes * 4;
+    const strongMax = 23 + missingTypes * 4;
+
+    if (length <= weakMax) return { label: "Weak", level: 2 };
+    if (length <= mediumMax) return { label: "Medium", level: 3 };
+    if (length <= strongMax) return { label: "Strong", level: 4 };
+    return { label: "Very Strong", level: 5 };
   }
 
   // Password strength levels for visual bar
