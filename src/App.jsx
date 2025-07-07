@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiFile } from "react-icons/fi";
+import { FiCopy } from "react-icons/fi";
 
 // Main App Component
 function App() {
@@ -176,9 +176,9 @@ function App() {
                 position: "relative",
               }}
             >
-              <FiFile size={32} />
+              <FiCopy size={32} />
               {(copied || undefined) && (
-                <FiFile
+                <FiCopy
                   size={32}
                   className="copy-icon-duplicate"
                   style={{

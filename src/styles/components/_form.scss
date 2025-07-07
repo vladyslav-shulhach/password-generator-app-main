@@ -21,25 +21,47 @@
     justify-content: center;
     margin-left: 0.5rem;
     padding: 0;
-    transition: color 0.2s, filter 0.2s;
+    transition: color 0.2s, filter 0.2s,
+      transform 0.18s cubic-bezier(0.4, 0.2, 0.2, 1),
+      box-shadow 0.18s cubic-bezier(0.4, 0.2, 0.2, 1);
     cursor: pointer;
     position: relative;
 
     .copy-icon-duplicate {
       color: $color-primary;
       opacity: 0;
-      transition: opacity 0.18s;
+      transition: opacity 0.18s, transform 0.18s;
       z-index: 2;
+      filter: drop-shadow(0 0 6px $color-primary);
+      transform: scale(1);
     }
 
-    &:hover .copy-icon-duplicate,
-    &:focus-visible .copy-icon-duplicate,
-    &.copied .copy-icon-duplicate {
-      opacity: 1;
+    &:hover,
+    &:focus-visible {
+      color: $color-primary;
+      transform: scale(1.12) rotate(-4deg);
+      filter: drop-shadow(0 0 8px $color-primary);
+      box-shadow: 0 2px 12px 0 rgba($color-primary, 0.18);
+
+      .copy-icon-duplicate {
+        opacity: 1;
+        transform: scale(1.08) rotate(-2deg);
+      }
     }
 
     &:active {
-      transform: scale(0.92);
+      transform: scale(0.96) rotate(2deg);
+      filter: drop-shadow(0 0 12px $color-primary);
+      box-shadow: 0 2px 18px 0 rgba($color-primary, 0.22);
+    }
+
+    &.copied {
+      animation: copy-pop 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+      .copy-icon-duplicate {
+        opacity: 1;
+        transform: scale(1.18) rotate(2deg);
+        filter: drop-shadow(0 0 16px $color-primary);
+      }
     }
   }
 }
@@ -214,5 +236,24 @@ input[type="checkbox"] {
   .strength-bar__rect--very-strong {
     background: $strength-very-strong;
     border-color: $strength-very-strong;
+  }
+}
+
+@keyframes copy-pop {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0 $color-primary);
+  }
+  40% {
+    transform: scale(1.22) rotate(-8deg);
+    filter: drop-shadow(0 0 16px $color-primary);
+  }
+  70% {
+    transform: scale(0.96) rotate(2deg);
+    filter: drop-shadow(0 0 8px $color-primary);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0 $color-primary);
   }
 }
