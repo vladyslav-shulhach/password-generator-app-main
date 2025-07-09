@@ -161,7 +161,7 @@ function App() {
               className="password-output"
               placeholder="Your secure password"
             />
-            {/* Copy Icon with duplicate on copy/hover/focus */}
+            {/* Copy Icon */}
             <span
               className={`copy-icon${copied ? " copied" : ""}`}
               title="Copy password"
@@ -177,20 +177,6 @@ function App() {
               }}
             >
               <FiCopy size={32} />
-              {(copied || undefined) && (
-                <FiCopy
-                  size={32}
-                  className="copy-icon-duplicate"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    pointerEvents: "none",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              )}
             </span>
           </div>
         </section>
