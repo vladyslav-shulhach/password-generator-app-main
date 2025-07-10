@@ -195,7 +195,6 @@ input[type=checkbox]:checked::after {
   margin-right: 0.5em;
   font-size: 1.5em;
   color: #a3faaf;
-  min-width: 6em;
   letter-spacing: 0.05em;
   text-align: left;
 }

@@ -8,14 +8,16 @@ h5,
 h6 {
   font-family: $font-family-normal;
   color: $color-font;
-  margin-bottom: 0.5em;
   font-weight: 700;
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   opacity: 0.4;
+  @media (min-width: $breakpoint-desktop) {
+    font-size: 2rem;
+  }
 }
 
 label {

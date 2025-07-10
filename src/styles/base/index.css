@@ -45,14 +45,18 @@ h5,
 h6 {
   font-family: "Arial", sans-serif;
   color: #f8f9fa;
-  margin-bottom: 0.5em;
   font-weight: 700;
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   opacity: 0.4;
+}
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
 
 label {
@@ -76,7 +80,13 @@ body {
   color: #f8f9fa;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 3rem;
+}
+@media (min-width: 1024px) {
+  body {
+    padding-top: 0;
+    align-items: center;
+  }
 }
 
 div#root {
@@ -90,9 +100,7 @@ div#root {
 }
 
 header {
-  margin-bottom: 2rem;
   text-align: center;
-  font-family: "Arial", sans-serif;
 }
 
 main {
@@ -105,12 +113,17 @@ main {
 }
 
 footer {
-  position: absolute;
   width: 100%;
-  bottom: 0;
   padding: 1rem;
   text-align: center;
   font-size: 0.95em;
   opacity: 0.7;
   font-family: "Arial", sans-serif;
+}
+
+@media (min-width: 768px) {
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
 }/*# sourceMappingURL=index.css.map */
