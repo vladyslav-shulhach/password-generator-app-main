@@ -92,7 +92,7 @@
   background-color: #23232b;
   gap: 1rem;
 }
-@media (min-height: 500px) and (max-height: 700px) {
+@media (min-height: 500px) and (max-height: 760px) {
   .password-form {
     gap: 0;
   }
