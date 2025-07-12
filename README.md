@@ -147,7 +147,34 @@ const handleGenerate = () => {
 
 React's state management made it easy to update the password whenever the user changed their options.
 
-### Continued development
+#### Password Strength Logic
+
+Implementing password strength logic helped me understand how to evaluate the quality of a generated password based on its length and the diversity of character types included (uppercase, lowercase, numbers, symbols). I learned to:
+
+- Check for the presence of different character types using regular expressions.
+- Adjust strength thresholds dynamically depending on which character types the user selects.
+- Provide feedback to the user by mapping password properties to strength labels (e.g., "Too Short", "Weak", "Medium", "Strong", "Very Strong").
+- Visually represent strength using a progress bar that updates as the password changes.
+
+For example, the logic checks the password's length and counts how many character types are present, then determines the strength label accordingly. This approach encourages users to create longer and more complex passwords for better security.
+
+```js
+function getPasswordStrength(password) {
+  const length = password.length;
+  let types = 0;
+  if (/[A-Z]/.test(password)) types++;
+  if (/[a-z]/.test(password)) types++;
+  if (/[0-9]/.test(password)) types++;
+  if (/[^A-Za-z0-9]/.test(password)) types++;
+
+  if (length === 0) return { label: "", level: 0 };
+  if (length < 8) return { label: "Too Short", level: 1 };
+
+  // ...threshold logic...
+}
+```
+
+This logic ensures that both length and character variety contribute to the overall password strength, making the generator more effective and user-friendly.
 
 ## Author
 
