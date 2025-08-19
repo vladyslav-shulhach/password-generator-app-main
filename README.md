@@ -1,181 +1,61 @@
 # Frontend Mentor - Password Generator App
 
+## Live Demo
+
+[View the live app here](https://password-generator-app-main-bji8i6q8j.vercel.app/)
+
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
+  - [Features](#features)
+  - [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
 - [Author](#author)
 
 ## Overview
 
-### The challenge
+A modern, accessible password generator built with React and SCSS. Easily generate strong, customizable passwords and check their strength in real time.
 
-Users should be able to:
+## Features
 
-- Generate a password based on the selected inclusion options
-- Copy the generated password to the computer's clipboard
-- See a strength rating for their generated password
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
+- Generate a password based on selected inclusion options (uppercase, lowercase, numbers, symbols)
+- Copy the generated password to the clipboard
+- See a strength rating for the generated password
+- Responsive layout for all device sizes
+- Accessible: keyboard navigation, aria-live, input validation
+- Visual feedback for hover and focus states
 
-### Screenshot
+## Screenshots
 
 ![](./screenshot.jpg)
 
-### Links
+## Getting Started
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/vladyslav-shulhach/password-generator-app-main.git
+   cd password-generator-app
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-## My process
-
-### Built with
+### Built With
 
 - Semantic HTML5 markup
 - SCSS (Sass) with BEM and modular structure
 - CSS custom properties
-- Flexbox
-- CSS Grid
+- Flexbox & CSS Grid
 - Mobile-first workflow
 - React
-- Accessibility best practices (aria-live, input validation)
-
-### What I learned
-
-This project is my first time using React. I learned how to structure a React app, manage state, and integrate SCSS for styling components.
-
-#### React nature
-
-React feels like writing HTML and JavaScript together, but with superpowers. Instead of updating the DOM directly, I can describe what I want the UI to look like, and React takes care of the rest. For example:
-
-```jsx
-function Greeting({ name }) {
-  return <h1>Hello, {name}!</h1>;
-}
-```
-
-This looks like HTML, but it's actually JSX, which gets compiled to JavaScript. React keeps a virtual DOM and updates only what's needed, making UI updates fast and efficient.
-
-One thing I found interesting is how React encourages thinking in components. Each piece of UI is a function or class, and you can compose them together like building blocks. State and props make it easy to pass data and handle user interactions. For example, when a user types or clicks, React can update just the relevant part of the UI without reloading the whole page.
-
-```jsx
-function Counter() {
-  const [count, setCount] = useState(0);
-  return (
-    <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>
-  );
-}
-```
-
-React also makes it easy to manage side effects (like updating the document title) using hooks such as `useEffect`. This keeps logic related to a component close to its markup, making the codebase easier to understand and maintain.
-
-Another insight is how React's declarative approach helps avoid bugs that come from manually manipulating the DOM. Instead of telling the browser how to change things step by step, I just describe what I want, and React figures out the most efficient way to update the UI.
-
-##### How do HTML and JavaScript work together in React?
-
-React lets you mix JavaScript logic and HTML-like markup (JSX) in the same file. For example, you can declare state variables in JavaScript and then use them directly in your JSX to control the UI:
-
-```jsx
-const [password, setPassword] = useState("");
-const [length, setLength] = useState(12);
-const [includeUppercase, setIncludeUppercase] = useState(true);
-const [includeLowercase, setIncludeLowercase] = useState(true);
-const [includeNumbers, setIncludeNumbers] = useState(true);
-const [includeSymbols, setIncludeSymbols] = useState(false);
-
-return (
-  <div>
-    <input type="text" value={password} readOnly />
-    <input
-      type="range"
-      min="6"
-      max="32"
-      value={length}
-      onChange={(e) => setLength(Number(e.target.value))}
-    />
-    <label>
-      <input
-        type="checkbox"
-        checked={includeUppercase}
-        onChange={(e) => setIncludeUppercase(e.target.checked)}
-      />
-      Include Uppercase
-    </label>
-    {/* ...other options... */}
-  </div>
-);
-```
-
-Here, the state variables (JavaScript) directly control the values and checked states of the HTML inputs (JSX). When a user interacts with the UI, React updates the state, and the UI automatically reflects those changes. This tight integration makes building interactive interfaces much more intuitive.
-
-#### Password Generator Logic
-
-Building the password generator taught me how to combine user input and logic in a React-friendly way. For example, I used state to track which character sets to include, and then generated a password based on those options:
-
-```jsx
-const handleGenerate = () => {
-  // Define possible character sets
-  const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const lower = "abcdefghijklmnopqrstuvwxyz";
-  const numbers = "0123456789";
-  const symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
-
-  // Build the character pool based on user options
-  let characters = "";
-  if (includeUppercase) characters += upper;
-  if (includeLowercase) characters += lower;
-  if (includeNumbers) characters += numbers;
-  if (includeSymbols) characters += symbols;
-
-  // Generate the password by randomly picking from the pool
-  let generatedPassword = "";
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    generatedPassword += characters[randomIndex];
-  }
-
-  // Update the password state
-  setPassword(generatedPassword);
-};
-```
-
-React's state management made it easy to update the password whenever the user changed their options.
-
-#### Password Strength Logic
-
-Implementing password strength logic helped me understand how to evaluate the quality of a generated password based on its length and the diversity of character types included (uppercase, lowercase, numbers, symbols). I learned to:
-
-- Check for the presence of different character types using regular expressions.
-- Adjust strength thresholds dynamically depending on which character types the user selects.
-- Provide feedback to the user by mapping password properties to strength labels (e.g., "Too Short", "Weak", "Medium", "Strong", "Very Strong").
-- Visually represent strength using a progress bar that updates as the password changes.
-
-For example, the logic checks the password's length and counts how many character types are present, then determines the strength label accordingly. This approach encourages users to create longer and more complex passwords for better security.
-
-```js
-function getPasswordStrength(password) {
-  const length = password.length;
-  let types = 0;
-  if (/[A-Z]/.test(password)) types++;
-  if (/[a-z]/.test(password)) types++;
-  if (/[0-9]/.test(password)) types++;
-  if (/[^A-Za-z0-9]/.test(password)) types++;
-
-  if (length === 0) return { label: "", level: 0 };
-  if (length < 8) return { label: "Too Short", level: 1 };
-
-  // ...threshold logic...
-}
-```
-
-This logic ensures that both length and character variety contribute to the overall password strength, making the generator more effective and user-friendly.
+- Accessibility best practices
 
 ## Author
 
-- Frontend Mentor - [Vladyslav Shulhach](https://www.frontendmentor.io/profile/vladyslav-shulhach)
+- [Vladyslav Shulhach](https://github.com/Vladyslav-Shulhach)
