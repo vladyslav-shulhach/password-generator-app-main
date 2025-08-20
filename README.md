@@ -27,7 +27,13 @@ A modern, accessible password generator built with React and SCSS. Easily genera
 
 ## Screenshots
 
-![](./screenshot.jpg)
+### Desktop
+
+![](./desktop-preview.png)
+
+### Mobile
+
+![](./mobile-preview.png)
 
 ## Getting Started
 
